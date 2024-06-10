@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3sut2z FutureGen</title>
+    <title>Delorean FutureGen</title>
     <style>
         body {
             background: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.-gQr0eq37DxbNnpuQ1s0kQHaEK%26pid%3DApi&f=1&ipt=5cbcf1aa31776503e434c7cdcbc338cc2557a21c8beee09f6a7d2d92e6555de7&ipo=images') no-repeat center center fixed;
@@ -75,11 +75,6 @@
             border: 8px solid #2F4F4F;
             border-radius: 30px;
             height: auto;
-        }
-        .cf-turnstile {
-            display: flex;
-            justify-content: center;
-            margin-block: 40px;
         }
         .loading {
             width: 50px;
@@ -175,12 +170,6 @@
         </select>
     </div>
 
-    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onloadTurnstileCallback" defer></script>
-    <div class="cf-turnstile" data-sitekey="0x4AAAAAAAPNS1AlcEJxzPSj" data-callback="turnstilecompleted">
-        <iframe src="https://challenges.cloudflare.com/cdn-cgi/challenge-platform/h/g/turnstile/if/ov2/av0/rcv0/0/9zudi/0x4AAAAAAAPNS1AlcEJxzPSj/auto/normal" allow="cross-origin-isolated; fullscreen; autoplay" sandbox="allow-same-origin allow-scripts allow-popups" id="cf-chl-widget-9zudi" tabindex="0" title="Tiện ích chứa thách thức bảo mật Cloudflare" style="border: none; overflow: hidden; width: 300px; height: 65px;"></iframe>
-        <input type="hidden" name="cf-turnstile-response" id="cf-chl-widget-9zudi_response">
-    </div>
-
     <button onclick="generate()">Generate!</button>
     <div id="imageContainer" onclick="expandImage()"></div>
     <div id="loading" class="loading" style="display: none;"></div>
@@ -189,11 +178,7 @@
     </div>
 
     <script>
-        let turnstiletoken;
         let selectedStyle = "default";
-        function turnstilecompleted(token) {
-            turnstiletoken = token;
-        }
 
         function setStyle() {
             selectedStyle = document.getElementById('styleSelector').value;
@@ -211,7 +196,6 @@
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${turnstiletoken}`
                 },
                 body: JSON.stringify({ prompt, style: selectedStyle })
             })
