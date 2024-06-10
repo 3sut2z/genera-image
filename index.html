@@ -5,28 +5,151 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>3sut2z FutureGen</title>
     <style>
-        /* Your existing styles here */
+        body {
+            background: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.-gQr0eq37DxbNnpuQ1s0kQHaEK%26pid%3DApi&f=1&ipt=5cbcf1aa31776503e434c7cdcbc338cc2557a21c8beee09f6a7d2d92e6555de7&ipo=images') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Courier New', Courier, monospace;
+            color: #FFFFFF;
+            text-align: center;
+            padding: 50px;
+        }
+        h1 {
+            font-size: 50px;
+            color: #2F4F4F;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+        textarea {
+            width: 276px;
+            height: 20px;
+            border: 3px solid #2F4F4F;
+            border-radius: 10px;
+            padding: 10px;
+            font-size: 14px;
+            background: rgba(0, 0, 0, 0.5);
+            color: #FFFFFF;
+            margin-right: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        textarea:focus {
+            transform: scale(1.1);
+            outline: none;
+            box-shadow: 0 0 10px #FFDD00;
+        }
+        select {
+            width: 15%;
+            padding: 10px;
+            border-radius: 10px;
+            border: 3px solid #2F4F4F;
+            font-size: 14px;
+            background: rgba(0, 0, 0, 0.5);
+            color: #FFFFFF;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        select:focus {
+            transform: scale(1.1);
+            outline: none;
+            box-shadow: 0 0 10px #FFDD00;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            background-color: #2F4F4F;
+            color: #FFFFFF;
+            font-family: 'Arial Black', Gadget, sans-serif;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #FFDD00;
+        }
+        img {
+            margin-top: 70px;
+            max-width: 30%;
+            border: 8px solid #2F4F4F;
+            border-radius: 30px;
+            height: auto;
+        }
+        .cf-turnstile {
+            display: flex;
+            justify-content: center;
+            margin-block: 40px;
+        }
+        .loading {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #FFDD00;
+            border-top: 5px solid transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+            margin-top: 70px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .download-button {
+            margin-top: 20px;
+        }
+        .expanded {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            z-index: 9999;
+            cursor: zoom-out;
+            transition: all 0.3s ease;
+        }
+        .expanded img {
+            width: 100%;
+            height: 100%;
+        }
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            cursor: pointer;
+            color: #FFF;
+            font-size: 24px;
+            z-index: 10000;
+        }
     </style>
-    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onloadTurnstileCallback" defer></script>
 </head>
 <body>
-    <h1>3sut2z FutureGen</h1>
+    <h1>Delorean FutureGen</h1>
     <div class="container">
         <textarea id="prompt" placeholder="Write here..."></textarea>
         <select id="styleSelector" onchange="setStyle()">
             <option value="default">Select a style</option>
             <option value="General">General</option>
-            <option value="Realistic">Realistic</option>
-            <option value="Anime">Anime</option>
+            <option value="realistic">Realistic</option>
+            <option value="anime">Anime</option>
         </select>
     </div>
-    <div class="cf-turnstile" data-sitekey="YOUR_SITE_KEY" data-callback="turnstilecompleted"></div>
+
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onloadTurnstileCallback" defer></script>
+    <div class="cf-turnstile" data-sitekey="0x4AAAAAAAPNS1AlcEJxzPSj" data-callback="turnstilecompleted"></div>
+
     <button onclick="generate()">Generate!</button>
     <div id="imageContainer" onclick="expandImage()"></div>
     <div id="loading" class="loading" style="display: none;"></div>
-    <div id="downloadButton" class="download-button" style="display: none;"><button onclick="downloadImage()">Download Image</button></div>
+    <div id="downloadButton" class="download-button" style="display: none;">
+        <button onclick="downloadImage()">Download Image</button>
+    </div>
+
     <script>
         let turnstiletoken;
+        let selectedStyle = "General";
+
         function turnstilecompleted(token) {
             turnstiletoken = token;
         }
@@ -36,8 +159,9 @@
         }
 
         function generate() {
+            document.getElementById("imageContainer").innerHTML = "";
             const prompt = document.querySelector('textarea').value;
-            const style = document.getElementById('styleSelector').value;
+            const style = selectedStyle;
 
             if (!prompt) {
                 alert('Prompt is required!');
@@ -67,7 +191,7 @@
             })
             .then(blob => {
                 const imageUrl = URL.createObjectURL(blob);
-                document.getElementById('imageContainer').innerHTML = `<img src="${imageUrl}" alt="Result from 3sut2z FutureGen">`;
+                document.getElementById('imageContainer').innerHTML = `<img src="${imageUrl}" alt="Result from Delorean FutureGen">`;
                 document.getElementById('loading').style.display = 'none';
                 document.getElementById('downloadButton').style.display = 'block';
             })
@@ -80,7 +204,7 @@
 
         function downloadImage() {
             const imageSrc = document.querySelector('img').getAttribute('src');
-            const imageTitle = '3sut2z_Image';
+            const imageTitle = 'Delorean_Image';
             const link = document.createElement('a');
             link.href = imageSrc;
             link.download = imageTitle;
@@ -92,6 +216,7 @@
         function expandImage() {
             const image = document.querySelector('img');
             image.classList.add('expanded');
+
             const closeButton = document.createElement('span');
             closeButton.innerHTML = '✕';
             closeButton.classList.add('close-btn');
@@ -99,6 +224,7 @@
                 image.classList.remove('expanded');
                 closeButton.remove();
             };
+
             document.body.appendChild(closeButton);
         }
     </script>
