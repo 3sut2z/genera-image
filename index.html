@@ -3,239 +3,103 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Delorean FutureGen</title>
+    <title>3sut2z FutureGen</title>
     <style>
-        body {
-            background: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.-gQr0eq37DxbNnpuQ1s0kQHaEK%26pid%3DApi&f=1&ipt=5cbcf1aa31776503e434c7cdcbc338cc2557a21c8beee09f6a7d2d92e6555de7&ipo=images') no-repeat center center fixed;
-            background-size: cover;
-            font-family: 'Courier New', Courier, monospace;
-            color: #FFFFFF;
-            text-align: center;
-            padding: 50px;
-        }
-        h1 {
-            font-size: 50px;
-            color: #2F4F4F;
-        }
-        .container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: 20px;
-        }
-        textarea {
-            width: 276px;
-            height: 20px;
-            border: 3px solid #2F4F4F;
-            border-radius: 10px;
-            padding: 10px;
-            font-size: 14px;
-            background: rgba(0, 0, 0, 0.5);
-            color: #FFFFFF;
-            margin-right: 10px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        textarea:focus {
-            transform: scale(1.1);
-            outline: none;
-            box-shadow: 0 0 10px #FFDD00;
-        }
-        select {
-            width: 15%;
-            padding: 10px;
-            border-radius: 10px;
-            border: 3px solid #2F4F4F;
-            font-size: 14px;
-            background: rgba(0, 0, 0, 0.5);
-            color: #FFFFFF;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        select:focus {
-            transform: scale(1.1);
-            outline: none;
-            box-shadow: 0 0 10px #FFDD00;
-        }
-        button {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 10px;
-            background-color: #2F4F4F;
-            color: #FFFFFF;
-            font-family: 'Arial Black', Gadget, sans-serif;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        button:hover {
-            background-color: #FFDD00;
-        }
-        img {
-            margin-top: 70px;
-            max-width: 30%;
-            border: 8px solid #2F4F4F;
-            border-radius: 30px;
-            height: auto;
-        }
-        .loading {
-            width: 50px;
-            height: 50px;
-            border: 5px solid #FFDD00;
-            border-top: 5px solid transparent;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 0 auto;
-            margin-top: 70px;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        .download-button {
-            margin-top: 20px;
-        }
-        .expanded {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            margin: auto;
-            z-index: 9999;
-            cursor: zoom-out;
-            transition: all 0.3s ease;
-        }
-        .expanded img {
-            width: 100%;
-            height: 100%;
-        }
-        .close-btn {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            cursor: pointer;
-            color: #FFF;
-            font-size: 24px;
-            z-index: 10000;
-        }
-        invisi {
-            overflow: hidden;
-        }
+        /* Your existing styles here */
     </style>
-    <style>
-        @font-face {
-            font-family: 'monica-ext-font_YIBBBFG';
-            src: url('chrome-extension://ofpnmcalabcbjgholdjcjblkibolbppb/static/fonts/Hind-Light.otf');
-            font-weight: 300;
-            font-display: swap;
-        }
-        @font-face {
-            font-family: 'monica-ext-font_YIBBBFG';
-            src: url('chrome-extension://ofpnmcalabcbjgholdjcjblkibolbppb/static/fonts/Hind-Regular.otf');
-            font-weight: 400;
-            font-display: swap;
-        }
-        @font-face {
-            font-family: 'monica-ext-font_YIBBBFG';
-            src: url('chrome-extension://ofpnmcalabcbjgholdjcjblkibolbppb/static/fonts/Hind-Medium.otf');
-            font-weight: 500;
-            font-display: swap;
-        }
-        @font-face {
-            font-family: 'monica-ext-font_YIBBBFG';
-            src: url('chrome-extension://ofpnmcalabcbjgholdjcjblkibolbppb/static/fonts/Hind-SemiBold.otf');
-            font-weight: 600;
-            font-display: swap;
-        }
-    </style>
-    <style id="monica-reading-highlight-style">
-        .monica-reading-highlight {
-            animation: fadeInOut 1.5s ease-in-out;
-        }
-        @keyframes fadeInOut {
-            0%, 100% { background-color: transparent; }
-            30%, 70% { background-color: rgba(2, 118, 255, 0.20); }
-        }
-    </style>
-    <link type="text/css" rel="stylesheet" charset="UTF-8" href="https://www.gstatic.com/_/translate_http/_/ss/k=translate_http.tr.26tY-h6gH9w.L.W.O/am=AAM/d=0/rs=AN8SPfrUh4eQMB1I5qTj-4-oeXAO15kIQQ/m=el_main_css">
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onloadTurnstileCallback" defer></script>
 </head>
-<body monica-locale="vi" monica-version="5.4.4" monica-id="ofpnmcalabcbjgholdjcjblkibolbppb">
-    <h1>Delorean FutureGen</h1>
+<body>
+    <h1>3sut2z FutureGen</h1>
     <div class="container">
         <textarea id="prompt" placeholder="Write here..."></textarea>
         <select id="styleSelector" onchange="setStyle()">
             <option value="default">Select a style</option>
             <option value="General">General</option>
-            <option value="realistic">Realistic</option>
-            <option value="anime">Anime</option>
+            <option value="Realistic">Realistic</option>
+            <option value="Anime">Anime</option>
         </select>
     </div>
-
+    <div class="cf-turnstile" data-sitekey="YOUR_SITE_KEY" data-callback="turnstilecompleted"></div>
     <button onclick="generate()">Generate!</button>
     <div id="imageContainer" onclick="expandImage()"></div>
     <div id="loading" class="loading" style="display: none;"></div>
-    <div id="downloadButton" class="download-button" style="display: none;">
-        <button onclick="downloadImage()">Download Image</button>
-    </div>
-
+    <div id="downloadButton" class="download-button" style="display: none;"><button onclick="downloadImage()">Download Image</button></div>
     <script>
-        let selectedStyle = "default";
+        let turnstiletoken;
+        function turnstilecompleted(token) {
+            turnstiletoken = token;
+        }
 
         function setStyle() {
             selectedStyle = document.getElementById('styleSelector').value;
-            console.log('Selected Style:', selectedStyle);
         }
 
         function generate() {
-            document.getElementById("imageContainer").innerHTML = "";
             const prompt = document.querySelector('textarea').value;
-            const loading = document.getElementById("loading");
-            const downloadButton = document.getElementById("downloadButton");
+            const style = document.getElementById('styleSelector').value;
 
-            loading.style.display = "block";
-            fetch('https://api.example.com/generate', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ prompt, style: selectedStyle })
+            if (!prompt) {
+                alert('Prompt is required!');
+                return;
+            }
+            if (!style) {
+                alert('Style is required!');
+                return;
+            }
+            if (!turnstiletoken) {
+                alert('Turnstile captcha completion is required!');
+                return;
+            }
+
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('downloadButton').style.display = 'none';
+
+            fetch(`https://dlr-api.woozym.workers.dev/api/deloreanv2/FutureGen?prompt=${prompt}&style=${style}&tk=${turnstiletoken}`, {
+                method: 'GET'
             })
-            .then(response => response.blob())
+            .then(response => {
+                if (!response.ok) {
+                    alert("Error generating your image, please retry!");
+                    return;
+                }
+                return response.blob();
+            })
             .then(blob => {
-                loading.style.display = "none";
-                const img = document.createElement("img");
-                const url = URL.createObjectURL(blob);
-                img.src = url;
-                document.getElementById("imageContainer").appendChild(img);
-                downloadButton.style.display = "block";
-
-                document.getElementById("imageContainer").onclick = function() {
-                    expandImage(img);
-                };
+                const imageUrl = URL.createObjectURL(blob);
+                document.getElementById('imageContainer').innerHTML = `<img src="${imageUrl}" alt="Result from 3sut2z FutureGen">`;
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('downloadButton').style.display = 'block';
             })
             .catch(error => {
-                console.error('Error generating image:', error);
-                loading.style.display = "none";
+                alert('Error fetching the image: ' + error);
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('downloadButton').style.display = 'none';
             });
         }
 
-        function expandImage(img) {
-            if (img.classList.contains("expanded")) {
-                img.classList.remove("expanded");
-                document.body.classList.remove("invisi");
-            } else {
-                img.classList.add("expanded");
-                document.body.classList.add("invisi");
-            }
+        function downloadImage() {
+            const imageSrc = document.querySelector('img').getAttribute('src');
+            const imageTitle = '3sut2z_Image';
+            const link = document.createElement('a');
+            link.href = imageSrc;
+            link.download = imageTitle;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
         }
 
-        function downloadImage() {
-            const img = document.getElementById("imageContainer").querySelector("img");
-            if (img) {
-                const a = document.createElement("a");
-                a.href = img.src;
-                a.download = "generated_image.png";
-                a.click();
-            }
+        function expandImage() {
+            const image = document.querySelector('img');
+            image.classList.add('expanded');
+            const closeButton = document.createElement('span');
+            closeButton.innerHTML = '✕';
+            closeButton.classList.add('close-btn');
+            closeButton.onclick = function() {
+                image.classList.remove('expanded');
+                closeButton.remove();
+            };
+            document.body.appendChild(closeButton);
         }
     </script>
 </body>
